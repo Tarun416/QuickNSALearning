@@ -1,4 +1,16 @@
 package com.example.quickprojectlearning.data.database.model
 
-class PicturesEntity {
-}
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity("nasa_table")
+data class PicturesEntity(
+    val copyright: String?,
+    @PrimaryKey val date: String,
+    val explanation: String,
+    val hdurl: String,
+    val media_type: String,
+    val service_version: String,
+    val title: String,
+    val url: String
+)

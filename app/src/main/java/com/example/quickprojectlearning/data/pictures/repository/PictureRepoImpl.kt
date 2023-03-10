@@ -7,6 +7,6 @@ import com.example.quickprojectlearning.domain.repository.PictureRepository
 class PictureRepoImpl : PictureRepository {
 
     override fun getPictures(pictureRequest: PictureRequest): List<PictureDomain> {
-
+            return listOf()
     }
 }
