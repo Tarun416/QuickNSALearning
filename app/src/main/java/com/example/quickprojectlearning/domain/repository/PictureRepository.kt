@@ -5,5 +5,5 @@ import com.example.quickprojectlearning.domain.model.PictureRequest
 
 interface PictureRepository {
 
-    fun getPictures( pictureRequest: PictureRequest) : List<PictureDomain>
+   suspend fun getPictures( pictureRequest: PictureRequest) : List<PictureDomain>
 }
