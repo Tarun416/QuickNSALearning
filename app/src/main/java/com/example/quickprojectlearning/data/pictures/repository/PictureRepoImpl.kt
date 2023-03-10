@@ -10,6 +10,16 @@ import javax.inject.Inject
 class PictureRepoImpl @Inject constructor(private val factory: PictureFactory) : PictureRepository {
 
     override suspend fun getPictures(pictureRequest: PictureRequest): List<PictureDomain> {
-        return factory.create(Source.LOCAL).getPictures(pictureRequest)
+        return factory.create(Source.LOCAL).getPictures(pictureRequest).ifEmpty {
+            syncPicturesFromNetwork(pictureRequest)
+        }
+    }
+
+    private suspend fun syncPicturesFromNetwork(pictureRequest: PictureRequest) : List<PictureDomain>{
+        return factory.create(Source.NETWORK).getPictures(pictureRequest)
+            .also { pictureFromNetwork ->
+                factory.create(Source.LOCAL).addPictures(pictureFromNetwork)
+            }
+
     }
 }

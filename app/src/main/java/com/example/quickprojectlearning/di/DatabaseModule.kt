@@ -2,6 +2,7 @@ package com.example.quickprojectlearning.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.quickprojectlearning.data.database.PictureDatabase
 import com.example.quickprojectlearning.data.database.dao.PicturesDao
 import dagger.Module
 import dagger.Provides
@@ -16,16 +17,16 @@ object DatabaseModule {
     private const val database_name = "nasa_db"
 
     @Provides
-    fun provideDatabase(@ApplicationContext context: Context): com.example.quickprojectlearning.data.database.PictureDatabase {
+    fun provideDatabase(@ApplicationContext context: Context): PictureDatabase {
         return Room.databaseBuilder(
-            context,
-            com.example.quickprojectlearning.data.database.PictureDatabase::class.java,
+            context.applicationContext,
+            PictureDatabase::class.java,
             database_name
         ).build()
     }
 
     @Provides
-    fun provideDao(database: com.example.quickprojectlearning.data.database.PictureDatabase): PicturesDao {
+    fun provideDao(database: PictureDatabase): PicturesDao {
         return database.pictureDao()
     }
 }

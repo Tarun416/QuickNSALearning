@@ -12,7 +12,6 @@ object PictureDomainMapper {
             entityList.add(
                 PicturesEntity(
                     explanation = item.explanation!!,
-                    date = System.currentTimeMillis().toString(),
                     hdurl = item.hdurl!!,
                     title = item.title!!,
                     url = item.url!!
